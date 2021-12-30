@@ -1,55 +1,37 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MedianCalculator {
     public MedianCalculator() {
     }
-    void calculateMedian(){
+
+    List calculateMedian(int[] array, int low, int high) {
+        List<Integer> medianArray = new ArrayList<Integer>();
+
+        return medianArray;
+
     }
 
 
 }
 
-class divide extends MedianCalculator{
-    void calculateMedian(int[] ar1,int[] ar2,int n){
-        int i = 0;
-        int j = 0;
-        int count;
-        int m1 = -1, m2 = -1;
+class divide extends MedianCalculator {
+    int mid;
+    List<Integer> medianArray = new ArrayList<Integer>();
 
-        for (count = 0; count <= n; count++)
-        {
-
-            if (i == n)
-            {
-                m1 = m2;
-                m2 = ar2[0];
-                break;
-            }
-
-
-            else if (j == n)
-            {
-                m1 = m2;
-                m2 = ar1[0];
-                break;
-            }
-
-            if (ar1[i] <= ar2[j])
-            {
-
-                m1 = m2;
-                m2 = ar1[i];
-                i++;
-            }
-            else
-            {
-
-                m1 = m2;
-                m2 = ar2[j];
-                j++;
-            }
+    List calculateMedian(int[] array, int low, int high) {
+        if (array.length <= 5) {
+            Arrays.sort(array);
+            medianArray.add(array[(array.length / 2)]);
+            return medianArray;
+        } else {
+            calculateMedian(array, low, low + 4);
+            calculateMedian(array, low + 5, high);
         }
-
+        return medianArray;
     }
 
 }
