@@ -1,10 +1,9 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MedianCalculator {
-    public MedianCalculator() {
-    }
-    void calculateMedian(){
-    }
 
 
 }
@@ -52,4 +51,43 @@ class divide extends MedianCalculator{
 
     }
 
+}
+class MedianOfMedians extends MedianCalculator {
+    private int medianOfMedians(int[] nums)
+    {
+        if (nums.length <= 5)
+        {
+            Arrays.sort(nums);
+            return nums[nums.length/2];
+        }
+        int groups = nums.length/5;
+        if (nums.length%5 != 0)
+            groups ++;
+        int [] medians = new int[groups];
+        for (int i = 0; i < nums.length; i += 5)
+        {
+            if (i+4 < nums.length)
+                medians[i/5] = medianOfMedians(Arrays.copyOfRange(nums, i, i+5));
+            else
+            {
+                if (i == nums.length-1)
+                    medians[i/5] = nums[i];
+                else
+                    medians[i/5] = medianOfMedians(Arrays.copyOfRange(nums, i, nums.length));
+            }
+        }
+        return medianOfMedians(medians);
+    }
+    public int findMedian(int[] array){
+        int index=array.length/2;
+        ArrayList<Integer> low = new ArrayList<Integer>();
+        ArrayList<Integer> high = new ArrayList<Integer>();
+        int median=medianOfMedians(array);
+        if(array[index]==median)
+            return median;
+        for(int i=0;i<index;i++){
+
+        }
+        }
+    }
 }
